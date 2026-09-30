@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+  <title>My Shop App</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: var(--tg-theme-bg-color, #ffffff);
+      color: var(--tg-theme-text-color, #111111);
+    }
+
+    .card {
+      max-width: 420px;
+      margin: 30px auto;
+      padding: 24px;
+      border-radius: 16px;
+      background: var(--tg-theme-secondary-bg-color, #f3f3f3);
+    }
+
+    h1 {
+      font-size: 25px;
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--tg-theme-button-text-color, #ffffff);
+      background: var(--tg-theme-button-color, #2481cc);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <h1 id="welcome">My Shop App</h1>
+    <p>ወደ የእኔ ሱቅ መተግበሪያ እንኳን ደህና መጡ!</p>
+    <button id="helloButton">ሰላም በል</button>
+  </main>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+    const user = tg.initDataUnsafe?.user;
+    if (user) {
+      document.getElementById("welcome").textContent =
+        `ሰላም ${user.first_name}!`;
+    }
+
+    document.getElementById("helloButton").addEventListener("click", () => {
+      tg.showAlert("Mini App-ህ በትክክል እየሰራ ነው!");
+    });
+  </script>
+</body>
+</html>
